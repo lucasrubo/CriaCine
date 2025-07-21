@@ -24,20 +24,24 @@ const HeroSection = () => {
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         <div className="animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            CineCria
+            Roteirum
           </h1>
           <h2 className="text-2xl md:text-4xl font-semibold mb-8 text-foreground">
             Crie Filmes com IA, Ganhe com Criatividade
           </h2>
           <p className="text-xl md:text-2xl mb-12 text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            A primeira plataforma que une inteligência artificial, criatividade cinematográfica e recompensas reais. 
-            Crie sinopses únicas, gere imagens incríveis e seja reconhecido por sua originalidade.
+            A primeira plataforma que une inteligência artificial, criatividade
+            cinematográfica e recompensas reais. Crie sinopses únicas, gere
+            imagens incríveis e seja reconhecido por sua originalidade.
           </p>
         </div>
 
         {/* CTA Form */}
         <div className="animate-slide-in-left max-w-md mx-auto">
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 mb-8">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col sm:flex-row gap-4 mb-8"
+          >
             <Input
               type="email"
               placeholder="Seu melhor e-mail"
@@ -46,17 +50,18 @@ const HeroSection = () => {
               className="flex-1 h-12 text-lg bg-card/90 backdrop-blur-sm border-primary/30 focus:border-primary"
               required
             />
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               size="lg"
               className="h-12 px-8 bg-gradient-accent text-white font-semibold animate-glow-pulse hover:scale-105 transition-transform"
             >
               Entrar na Lista <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </form>
-          
+
           <p className="text-sm text-muted-foreground mb-8">
-            🎬 Seja um dos primeiros a explorar o futuro da criação cinematográfica
+            🎬 Seja um dos primeiros a explorar o futuro da criação
+            cinematográfica
           </p>
 
           {/* Stats Preview */}
@@ -71,7 +76,9 @@ const HeroSection = () => {
               <div className="text-2xl text-primary">
                 <CounterAnimation end={50} prefix="R$ " suffix="k" />
               </div>
-              <div className="text-sm text-muted-foreground">Em Recompensas</div>
+              <div className="text-sm text-muted-foreground">
+                Em Recompensas
+              </div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-primary">24/7</div>

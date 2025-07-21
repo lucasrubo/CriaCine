@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
   },
 
   plugins: [react()],
-  base: "/CriaCine",
+  base: "/Roteirum",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

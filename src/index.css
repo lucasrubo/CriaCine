@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* CineCria Color Palette - Cinema themed dark/red design */
+    /* Roteirum Color Palette - Cinema themed dark/red design */
     --background: 330 9% 96%; /* white-smoke */
     --foreground: 330 10% 4%; /* night */
 
@@ -40,10 +40,15 @@ All colors MUST be HSL.
     --radius: 0.5rem;
 
     /* Cinema gradients */
-    --gradient-hero: linear-gradient(135deg, 330 10% 4%, 206 14% 10%, 359 87% 21%);
+    --gradient-hero: linear-gradient(
+      135deg,
+      330 10% 4%,
+      206 14% 10%,
+      359 87% 21%
+    );
     --gradient-card: linear-gradient(180deg, 330 9% 96%, 0 0% 83%);
     --gradient-accent: linear-gradient(90deg, 359 77% 56%, 359 77% 41%);
-    
+
     /* Custom Cinema effects */
     --shadow-glow: 0 0 40px hsla(359, 77%, 56%, 0.3);
     --shadow-cinema: 0 20px 60px hsla(330, 10%, 4%, 0.4);
@@ -79,7 +84,12 @@ All colors MUST be HSL.
     --ring: 359 77% 56%; /* imperial-red */
 
     /* Dark mode gradients */
-    --gradient-hero: linear-gradient(135deg, 330 10% 4%, 359 87% 21%, 359 77% 56%);
+    --gradient-hero: linear-gradient(
+      135deg,
+      330 10% 4%,
+      359 87% 21%,
+      359 77% 56%
+    );
     --gradient-card: linear-gradient(180deg, 206 14% 10%, 359 87% 21%);
     --gradient-accent: linear-gradient(90deg, 359 77% 56%, 359 77% 41%);
   }

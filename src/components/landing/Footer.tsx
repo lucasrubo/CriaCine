@@ -13,23 +13,36 @@ const Footer = () => {
             <div className="flex items-center mb-4">
               <Film className="h-8 w-8 text-primary mr-2" />
               <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                CineCria
+                Roteirum
               </span>
             </div>
             <p className="text-muted-foreground mb-4">
-              A primeira plataforma que une IA, criatividade cinematográfica e recompensas reais.
+              A primeira plataforma que une IA, criatividade cinematográfica e
+              recompensas reais.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="#"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="#"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="#"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="#"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Github className="h-5 w-5" />
               </a>
             </div>
@@ -39,11 +52,46 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-foreground mb-4">Produto</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Como Funciona</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Recursos</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Demonstração</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Roadmap</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">API</a></li>
+              <li>
+                <a
+                  href="#"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Como Funciona
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Recursos
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Demonstração
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Roadmap
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  API
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -51,11 +99,46 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-foreground mb-4">Empresa</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Sobre</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Blog</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Carreiras</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Investidores</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Imprensa</a></li>
+              <li>
+                <a
+                  href="#"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Sobre
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Carreiras
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Investidores
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Imprensa
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -63,12 +146,43 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-foreground mb-4">Suporte</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">FAQ</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Contato</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Documentação</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Status</a></li>
               <li>
-                <a href="mailto:contato@cinecria.com" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                <a
+                  href="#"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  FAQ
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Contato
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Documentação
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Status
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:contato@Roteirum.com"
+                  className="text-muted-foreground hover:text-primary transition-colors flex items-center"
+                >
                   <Mail className="h-4 w-4 mr-1" />
                   Contato
                 </a>
@@ -80,9 +194,12 @@ const Footer = () => {
         {/* Newsletter */}
         <div className="border-t border-border pt-8 mb-8">
           <div className="max-w-md">
-            <h4 className="font-semibold text-foreground mb-2">Fique por dentro</h4>
+            <h4 className="font-semibold text-foreground mb-2">
+              Fique por dentro
+            </h4>
             <p className="text-muted-foreground text-sm mb-4">
-              Receba atualizações sobre novos recursos, dicas de criação e oportunidades exclusivas.
+              Receba atualizações sobre novos recursos, dicas de criação e
+              oportunidades exclusivas.
             </p>
             <div className="flex gap-2">
               <input
@@ -100,16 +217,25 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-sm text-muted-foreground mb-4 md:mb-0">
-            © {currentYear} CineCria. Todos os direitos reservados.
+            © {currentYear} Roteirum. Todos os direitos reservados.
           </div>
           <div className="flex space-x-6 text-sm">
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+            <a
+              href="#"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
               Termos de Uso
             </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+            <a
+              href="#"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
               Política de Privacidade
             </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+            <a
+              href="#"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
               Cookies
             </a>
           </div>
