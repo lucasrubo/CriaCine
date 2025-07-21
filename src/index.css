@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* CineCria Color Palette - Cinema themed dark/red design */
+    --background: 330 9% 96%; /* white-smoke */
+    --foreground: 330 10% 4%; /* night */
+
+    --card: 0 0% 100%; /* white */
+    --card-foreground: 206 14% 10%; /* eerie-black */
+
+    --popover: 0 0% 100%; /* white */
+    --popover-foreground: 206 14% 10%; /* eerie-black */
+
+    --primary: 359 77% 56%; /* imperial-red */
+    --primary-foreground: 0 0% 100%; /* white */
+
+    --secondary: 5 7% 67%; /* silver */
+    --secondary-foreground: 206 14% 10%; /* eerie-black */
+
+    --muted: 0 0% 83%; /* timberwolf */
+    --muted-foreground: 206 14% 10%; /* eerie-black */
+
+    --accent: 359 87% 21%; /* blood-red */
+    --accent-foreground: 0 0% 100%; /* white */
+
+    --destructive: 359 77% 41%; /* cornell-red-2 */
+    --destructive-foreground: 0 0% 100%; /* white */
+
+    --border: 0 0% 83%; /* timberwolf */
+    --input: 330 9% 96%; /* white-smoke */
+    --ring: 359 77% 56%; /* imperial-red */
+
+    --radius: 0.5rem;
+
+    /* Cinema gradients */
+    --gradient-hero: linear-gradient(135deg, 330 10% 4%, 206 14% 10%, 359 87% 21%);
+    --gradient-card: linear-gradient(180deg, 330 9% 96%, 0 0% 83%);
+    --gradient-accent: linear-gradient(90deg, 359 77% 56%, 359 77% 41%);
+    
+    /* Custom Cinema effects */
+    --shadow-glow: 0 0 40px hsla(359, 77%, 56%, 0.3);
+    --shadow-cinema: 0 20px 60px hsla(330, 10%, 4%, 0.4);
+  }
+
+  .dark {
+    --background: 330 10% 4%; /* night */
+    --foreground: 330 9% 96%; /* white-smoke */
+
+    --card: 206 14% 10%; /* eerie-black */
+    --card-foreground: 330 9% 96%; /* white-smoke */
+
+    --popover: 206 14% 10%; /* eerie-black */
+    --popover-foreground: 330 9% 96%; /* white-smoke */
+
+    --primary: 359 77% 56%; /* imperial-red */
+    --primary-foreground: 0 0% 100%; /* white */
+
+    --secondary: 206 14% 10%; /* eerie-black */
+    --secondary-foreground: 330 9% 96%; /* white-smoke */
+
+    --muted: 359 87% 21%; /* blood-red */
+    --muted-foreground: 5 7% 67%; /* silver */
+
+    --accent: 359 77% 41%; /* cornell-red-2 */
+    --accent-foreground: 0 0% 100%; /* white */
+
+    --destructive: 359 77% 41%; /* cornell-red-2 */
+    --destructive-foreground: 0 0% 100%; /* white */
+
+    --border: 359 87% 21%; /* blood-red */
+    --input: 206 14% 10%; /* eerie-black */
+    --ring: 359 77% 56%; /* imperial-red */
+
+    /* Dark mode gradients */
+    --gradient-hero: linear-gradient(135deg, 330 10% 4%, 359 87% 21%, 359 77% 56%);
+    --gradient-card: linear-gradient(180deg, 206 14% 10%, 359 87% 21%);
+    --gradient-accent: linear-gradient(90deg, 359 77% 56%, 359 77% 41%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
