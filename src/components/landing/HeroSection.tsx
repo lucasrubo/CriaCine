@@ -47,7 +47,7 @@ const HeroSection = () => {
               placeholder="Seu melhor e-mail"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 h-12 text-lg bg-card/90 backdrop-blur-sm border-primary/30 focus:border-primary"
+              className="flex-1 h-12 text-lg text-white bg-card/90 backdrop-blur-sm border-primary/30 focus:border-primary"
               required
             />
             <Button

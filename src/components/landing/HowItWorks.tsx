@@ -77,13 +77,6 @@ const HowItWorks = () => {
             </Card>
           ))}
         </div>
-
-        {/* Connection Lines (Hidden on mobile) */}
-        <div className="hidden lg:block relative -mt-16">
-          <div className="absolute top-8 left-1/4 w-1/4 h-0.5 bg-gradient-to-r from-primary to-accent opacity-30"></div>
-          <div className="absolute top-8 left-2/4 w-1/4 h-0.5 bg-gradient-to-r from-accent to-primary opacity-30"></div>
-          <div className="absolute top-8 left-3/4 w-1/4 h-0.5 bg-gradient-to-r from-primary to-accent opacity-30"></div>
-        </div>
       </div>
     </section>
   );
