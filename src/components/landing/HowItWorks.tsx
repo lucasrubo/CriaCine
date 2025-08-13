@@ -5,27 +5,31 @@ const steps = [
   {
     icon: Lightbulb,
     title: "Imagine",
-    description: "Tenha uma ideia criativa para um filme fictício. Pode ser qualquer gênero, época ou estilo.",
-    color: "text-primary"
+    description:
+      "Tenha uma ideia criativa para um filme fictício. Pode ser qualquer gênero, época ou estilo.",
+    color: "text-primary",
   },
   {
     icon: Wand2,
     title: "Crie com IA",
-    description: "Use nossa IA para gerar sinopses envolventes e imagens cinematográficas profissionais.",
-    color: "text-accent"
+    description:
+      "Use nossa IA para gerar sinopses envolventes e imagens cinematográficas profissionais.",
+    color: "text-accent",
   },
   {
     icon: Trophy,
     title: "Publique & Compete",
-    description: "Compartilhe sua criação e receba pontos por curtidas, visualizações e originalidade.",
-    color: "text-primary"
+    description:
+      "Compartilhe sua criação e receba pontos por curtidas, visualizações e originalidade.",
+    color: "text-primary",
   },
   {
     icon: DollarSign,
     title: "Ganhe Dinheiro",
-    description: "Converta seus pontos em dinheiro real ou use para criar mais conteúdo premium.",
-    color: "text-accent"
-  }
+    description:
+      "Converta seus pontos em dinheiro real ou use para criar mais conteúdo premium.",
+    color: "text-accent",
+  },
 ];
 
 const HowItWorks = () => {
@@ -34,17 +38,18 @@ const HowItWorks = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-            Como Funciona o CineCria
+            Como Funciona o Roteirum
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Transforme sua criatividade em uma fonte de renda com nossa plataforma inovadora
+            Transforme sua criatividade em uma fonte de renda com nossa
+            plataforma inovadora
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
-            <Card 
-              key={index} 
+            <Card
+              key={index}
               className="relative bg-card/80 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-glow animate-fade-in group"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
@@ -56,7 +61,9 @@ const HowItWorks = () => {
 
                 {/* Icon */}
                 <div className="mb-6 mt-4">
-                  <step.icon className={`h-12 w-12 mx-auto ${step.color} group-hover:scale-110 transition-transform`} />
+                  <step.icon
+                    className={`h-12 w-12 mx-auto ${step.color} group-hover:scale-110 transition-transform`}
+                  />
                 </div>
 
                 {/* Content */}
@@ -69,14 +76,7 @@ const HowItWorks = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        {/* Connection Lines (Hidden on mobile) */}
-        <div className="hidden lg:block relative -mt-16">
-          <div className="absolute top-8 left-1/4 w-1/4 h-0.5 bg-gradient-to-r from-primary to-accent opacity-30"></div>
-          <div className="absolute top-8 left-2/4 w-1/4 h-0.5 bg-gradient-to-r from-accent to-primary opacity-30"></div>
-          <div className="absolute top-8 left-3/4 w-1/4 h-0.5 bg-gradient-to-r from-primary to-accent opacity-30"></div>
-        </div>
+        </div>        
       </div>
     </section>
   );
