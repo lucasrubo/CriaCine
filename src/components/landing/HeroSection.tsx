@@ -50,13 +50,15 @@ const HeroSection = () => {
               className="flex-1 h-12 text-lg bg-card/90 backdrop-blur-sm border-primary/30 focus:border-primary"
               required
             />
-            <Button
-              type="submit"
-              size="lg"
-              className="h-12 px-8 bg-gradient-accent text-white font-semibold animate-glow-pulse hover:scale-105 transition-transform"
-            >
-              Entrar na Lista <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button
+                type="submit"
+                size="lg"
+                className="h-12 px-8 bg-gradient-accent text-foreground font-semibold animate-glow-pulse hover:scale-105 transition-transform"
+              >
+                Entrar na Lista <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
           </form>
 
           <p className="text-sm text-muted-foreground mb-8">
@@ -85,6 +87,17 @@ const HeroSection = () => {
               <div className="text-sm text-muted-foreground">IA Criativa</div>
             </div>
           </div>
+
+          
+          <Button
+                type="button"
+                size="lg"
+                variant="outline"
+                className="text-foreground h-12 px-8 border-primary/30 hover:bg-primary/10 mt-16"
+                onClick={() => window.location.href = '/Roteirum/login'}
+              >
+                Preview
+          </Button>
         </div>
       </div>
 
