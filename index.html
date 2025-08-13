@@ -18,25 +18,31 @@
       property="og:description"
       content="A primeira plataforma que une inteligência artificial, criatividade cinematográfica e recompensas reais. Crie sinopses únicas, gere imagens incríveis e seja reconhecido por sua originalidade."
     />
-    <script type="module" crossorigin src="/Roteirum/assets/index-CtK1tqrP.js"></script>
+    <script type="module" crossorigin src="/Roteirum/assets/index-C9JNmDcK.js"></script>
     <link rel="stylesheet" crossorigin href="/Roteirum/assets/index-4chs8wsu.css">
   </head>
 
-  <body style="margin: 0 !important;">
+  <body style="margin: 0 !important">
     <!-- GitHub Pages SPA redirect script -->
     <script>
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(
+            null,
+            null,
+            l.pathname.slice(0, -1) + decoded + l.hash
           );
         }
-      }(window.location))
+      })(window.location);
     </script>
-    
+
     <div id="root"></div>
   </body>
 </html>
