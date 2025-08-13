@@ -61,7 +61,7 @@ const Header = ({
                 variant="ghost"
                 size="sm"
                 onClick={handleBack}
-                className="lg:flex items-center space-x-2"
+                className="text-foreground lg:flex items-center space-x-2"
               >
                 <span>←</span>
                 <span className="hidden sm:inline">Voltar</span>

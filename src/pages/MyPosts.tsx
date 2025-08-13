@@ -6,12 +6,9 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import FeedContainer from '@/components/feed/FeedContainer';
-import SearchBar from '@/components/feed/SearchBar';
+import AppLayout from '@/components/layout/AppLayout';
 import Sidebar from '@/components/sidebar/Sidebar';
 import { 
-  LogOut, 
-  Home, 
-  ArrowLeft, 
   Send, 
   Filter, 
   Plus,
@@ -25,17 +22,9 @@ import { useNavigate } from 'react-router-dom';
 import { PostType } from '@/types';
 
 const MyPosts = () => {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('all');
-
-  const handleLogout = async () => {
-    await logout();
-  };
-
-  const handleBackToFeed = () => {
-    navigate('/Roteirum/feed');
-  };
 
   const handleCreatePost = () => {
     navigate('/Roteirum/create');
@@ -86,114 +75,53 @@ const MyPosts = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-3">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center space-x-3">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleBackToFeed}
-                className="flex items-center space-x-2"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                <span>Feed</span>
-              </Button>
-              <div className="h-4 w-px bg-border"></div>
-              <Send className="h-5 w-5 text-green-500" />
-              <h1 className="text-lg font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Seus Posts
-              </h1>
-            </div>
-            
-            <div className="flex items-center space-x-3">
-              <Button
-                onClick={handleCreatePost}
-                size="sm"
-                className="bg-gradient-accent hover:opacity-90"
-              >
-                <Plus className="h-4 w-4 mr-2" />
-                Criar Post
-              </Button>
-              
-              <div className="flex items-center space-x-2">
-                <Avatar className="h-7 w-7">
-                  <AvatarImage src={user?.avatar} alt={user?.name} />
-                  <AvatarFallback className="text-xs">
-                    {user?.name?.charAt(0).toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
-                <span className="text-sm font-medium hidden sm:inline">
-                  {user?.name}
-                </span>
+    <AppLayout
+      title="Meus Posts"
+      subtitle="Seu portfólio criativo na comunidade"
+      icon={<Send className="h-6 w-6 text-green-500" />}
+      showSearch={true}
+      showBackButton={true}
+      backPath="/Roteirum/feed"
+      sidebarContent={
+        <div className="space-y-4">
+          <Sidebar showTopRanking={false} />
+          
+          {/* Estatísticas dos posts */}
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-sm flex items-center space-x-2">
+                <BarChart3 className="h-4 w-4 text-primary" />
+                <span>Suas Estatísticas</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="text-center p-2 bg-muted/30 rounded-lg">
+                  <div className="text-lg font-bold text-primary">0</div>
+                  <div className="text-xs text-muted-foreground">Total Posts</div>
+                </div>
+                <div className="text-center p-2 bg-muted/30 rounded-lg">
+                  <div className="text-lg font-bold text-red-500">0</div>
+                  <div className="text-xs text-muted-foreground">Curtidas</div>
+                </div>
               </div>
               
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleLogout}
-                className="flex items-center space-x-1"
-              >
-                <LogOut className="h-4 w-4" />
-                <span className="hidden sm:inline">Sair</span>
-              </Button>
-            </div>
-          </div>
-
-          {/* Barra de pesquisa */}
-          <div className="max-w-2xl">
-            <SearchBar placeholder="Pesquisar nos seus posts..." />
-          </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="text-center p-2 bg-muted/30 rounded-lg">
+                  <div className="text-lg font-bold text-blue-500">0</div>
+                  <div className="text-xs text-muted-foreground">Salvos</div>
+                </div>
+                <div className="text-center p-2 bg-muted/30 rounded-lg">
+                  <div className="text-lg font-bold text-green-500">0</div>
+                  <div className="text-xs text-muted-foreground">Comentários</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
-      </header>
-
-      {/* Conteúdo principal */}
-      <main className="max-w-7xl mx-auto px-4 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Sidebar esquerda */}
-          <div className="hidden lg:block">
-            <div className="sticky top-24 space-y-4">
-              <Sidebar showTopRanking={false} />
-              
-              {/* Estatísticas dos posts */}
-              <Card>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-sm flex items-center space-x-2">
-                    <BarChart3 className="h-4 w-4 text-primary" />
-                    <span>Suas Estatísticas</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="text-center p-2 bg-muted/30 rounded-lg">
-                      <div className="text-lg font-bold text-primary">0</div>
-                      <div className="text-xs text-muted-foreground">Total Posts</div>
-                    </div>
-                    <div className="text-center p-2 bg-muted/30 rounded-lg">
-                      <div className="text-lg font-bold text-red-500">0</div>
-                      <div className="text-xs text-muted-foreground">Curtidas</div>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="text-center p-2 bg-muted/30 rounded-lg">
-                      <div className="text-lg font-bold text-blue-500">0</div>
-                      <div className="text-xs text-muted-foreground">Salvos</div>
-                    </div>
-                    <div className="text-center p-2 bg-muted/30 rounded-lg">
-                      <div className="text-lg font-bold text-green-500">0</div>
-                      <div className="text-xs text-muted-foreground">Comentários</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-
-          {/* Feed central */}
-          <div className="lg:col-span-3 space-y-6">
+      }
+    >
+      <div className="space-y-6">
             {/* Cabeçalho da página */}
             <Card>
               <CardContent className="pt-6">
@@ -284,10 +212,8 @@ const MyPosts = () => {
               type={getFilteredType()}
               className="space-y-4"
             />
-          </div>
-        </div>
-      </main>
-    </div>
+      </div>
+    </AppLayout>
   );
 };
 
