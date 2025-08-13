@@ -149,46 +149,52 @@ const PostCard = ({
           {post.title}
         </h2>
 
-        {/* Imagem (se houver) */}
-        {post.imageUrl && (
-          <div className="mb-4 rounded-lg overflow-hidden bg-muted">
-            <img
-              src={post.imageUrl}
-              alt={post.title}
-              className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-            />
+        <div className="grid lg:grid-cols-2 gap-4 items-start">
+          {/* Imagem (se houver) */}
+          {post.imageUrl && (
+            <div className="aspect-[3/3] mb-4 rounded-lg overflow-hidden bg-muted">
+              <img
+                src={post.imageUrl}
+                alt={post.title}
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+              />
+            </div>
+          )}
+          <div className="h-full flex flex-col justify-between space-y-4 md:space-y-0">
+          <div>
+            {/* Conteúdo/Descrição */}
+            <p className="text-muted-foreground mb-4 leading-relaxed">
+              {post.content}
+            </p>
+            {/* Tags */}
+            {post.tags.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {post.tags.map((tag) => (
+                  <Badge 
+                    key={tag} 
+                    variant="outline" 
+                    className="text-xs hover:bg-primary/10 cursor-pointer"
+                  >
+                    #{tag}
+                  </Badge>
+                ))}
+              </div>
+            )}
           </div>
-        )}
-
-        {/* Conteúdo/Descrição */}
-        <p className="text-muted-foreground mb-4 leading-relaxed">
-          {post.content}
-        </p>
-
-        {/* Tags */}
-        {post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {post.tags.map((tag) => (
-              <Badge 
-                key={tag} 
-                variant="outline" 
-                className="text-xs hover:bg-primary/10 cursor-pointer"
-              >
-                #{tag}
-              </Badge>
-            ))}
-          </div>
-        )}
-
-        {/* Estatísticas */}
-        <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-          <div className="flex items-center space-x-4">
-            <span>{post.likes} curtidas</span>
-            <span>{post.saves} salvos</span>
-            <span>{post.comments.length} comentários</span>
+            <div>
+              {/* Estatísticas */}
+              <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                <div className="flex items-center space-x-4">
+                  <span>{post.likes} curtidas</span>
+                  <span>{post.saves} salvos</span>
+                  <span>{post.comments.length} comentários</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
 
         {/* Botões de Ação */}
         <div className="flex items-center justify-between pt-3 border-t border-border/50">
@@ -248,7 +254,7 @@ const PostCard = ({
             <span>{isSaved ? 'Salvo' : 'Salvar'}</span>
           </Button>
         </div>
-
+        
         {/* Comentários (preview) */}
         {post.comments.length > 0 && (
           <div className="mt-4 pt-3 border-t border-border/30">

@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ToastProvider } from "@/components/ui/toast-provider";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import AuthGuard from "@/components/auth/AuthGuard";
 import Index from "./pages/Index";
@@ -21,7 +21,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: 3,
-      retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
+      retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
       staleTime: 5 * 60 * 1000, // 5 minutos
     },
     mutations: {
@@ -39,88 +39,94 @@ const App = () => (
             <div className="dark">
               <Toaster />
               <Sonner />
-              <BrowserRouter>
+              <HashRouter>
                 <Routes>
                   {/* Landing page pública */}
                   <Route path="/Roteirum" element={<Index />} />
-                  
+
                   {/* Rota raiz redireciona para feed se logado, senão para landing */}
-                  <Route path="/" element={<Navigate to="/Roteirum/feed" replace />} />
-                  
+                  <Route
+                    path="/"
+                    element={<Navigate to="/Roteirum/feed" replace />}
+                  />
+
                   {/* Login - só acessível se não estiver logado */}
-                  <Route 
-                    path="/Roteirum/login" 
+                  <Route
+                    path="/Roteirum/login"
                     element={
-                      <AuthGuard requireAuth={false} redirectTo="/Roteirum/feed">
+                      <AuthGuard
+                        requireAuth={false}
+                        redirectTo="/Roteirum/feed"
+                      >
                         <Login />
                       </AuthGuard>
-                    } 
+                    }
                   />
-                  
+
                   {/* Feed - requer autenticação */}
-                  <Route 
-                    path="/Roteirum/feed" 
+                  <Route
+                    path="/Roteirum/feed"
                     element={
                       <AuthGuard requireAuth={true}>
                         <Feed />
                       </AuthGuard>
-                    } 
+                    }
                   />
-                  
+
                   {/* Pesquisa - requer autenticação */}
-                  <Route 
-                    path="/Roteirum/search" 
+                  <Route
+                    path="/Roteirum/search"
                     element={
                       <AuthGuard requireAuth={true}>
                         <Search />
                       </AuthGuard>
-                    } 
+                    }
                   />
-                  
+
                   {/* Posts curtidos - requer autenticação */}
-                  <Route 
-                    path="/Roteirum/liked" 
+                  <Route
+                    path="/Roteirum/liked"
                     element={
                       <AuthGuard requireAuth={true}>
                         <Liked />
                       </AuthGuard>
-                    } 
+                    }
                   />
-                  
+
                   {/* Posts salvos - requer autenticação */}
-                  <Route 
-                    path="/Roteirum/saved" 
+                  <Route
+                    path="/Roteirum/saved"
                     element={
                       <AuthGuard requireAuth={true}>
                         <Saved />
                       </AuthGuard>
-                    } 
+                    }
                   />
-                  
+
                   {/* Posts do usuário - requer autenticação */}
-                  <Route 
-                    path="/Roteirum/my-posts" 
+                  <Route
+                    path="/Roteirum/my-posts"
                     element={
                       <AuthGuard requireAuth={true}>
                         <MyPosts />
                       </AuthGuard>
-                    } 
+                    }
                   />
-                  
+
                   {/* Ranking - requer autenticação */}
-                  <Route 
-                    path="/Roteirum/ranking" 
+                  <Route
+                    path="/Roteirum/ranking"
                     element={
                       <AuthGuard requireAuth={true}>
                         <Ranking />
                       </AuthGuard>
-                    } 
+                    }
                   />
-                  
+
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
-              </BrowserRouter>
+              </HashRouter>
             </div>
           </AuthProvider>
         </ToastProvider>
