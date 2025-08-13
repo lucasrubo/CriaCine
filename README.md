@@ -3,6 +3,7 @@
 <div align="center">
 
 ![Roteirum Logo](https://img.shields.io/badge/Roteirum-v1.0.0-blue?style=for-the-badge&logo=film)
+[![MIT License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 [![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5.3-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.11-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
@@ -287,7 +288,26 @@ Contribuições são sempre bem-vindas! Veja como você pode ajudar:
 
 ## 📄 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está sob a **MIT License** - uma das licenças mais permissivas e populares do open source.
+
+### O que isso significa?
+
+✅ **Você PODE:**
+- ✨ Usar comercialmente
+- 🔄 Modificar o código
+- 📦 Distribuir
+- 🔒 Usar em projetos privados
+- 🏷️ Sublicenciar
+
+❌ **Você NÃO PODE:**
+- 🛡️ Responsabilizar os autores por danos
+- 🚫 Usar sem incluir a licença original
+
+### Requisitos:
+- 📋 Incluir a licença e copyright nos arquivos distribuídos
+- 📝 Indicar mudanças significativas (recomendado)
+
+Veja o arquivo [LICENSE](LICENSE) para o texto completo da licença.
 
 ---
 
