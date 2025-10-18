@@ -1,20 +1,20 @@
-import { useEffect, useRef, useCallback } from 'react';
-import { usePosts } from '@/hooks/usePosts';
-import { useAuth } from '@/hooks/useAuth';
-import { useToast } from '@/components/ui/toast-provider';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { ErrorDisplay } from '@/components/ui/error-boundary';
-import { PostSkeletonList } from '@/components/ui/post-skeleton';
-import PostCard from './PostCard';
-import { Loader2, RefreshCw } from 'lucide-react';
-import { PostType } from '@/types';
+import { useEffect, useRef, useCallback } from "react";
+import { usePosts } from "@/hooks/usePosts";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/components/ui/toast-provider";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ErrorDisplay } from "@/components/ui/error-boundary";
+import { PostSkeletonList } from "@/components/ui/post-skeleton";
+import PostCard from "./PostCard";
+import { Loader2, RefreshCw } from "lucide-react";
+import { PostType } from "@/types";
 
 interface FeedContainerProps {
   type?: PostType;
   authorId?: string;
   userId?: string;
-  filter?: 'liked' | 'saved' | 'authored';
+  filter?: "liked" | "saved" | "authored";
   searchQuery?: string;
   className?: string;
   showWelcome?: boolean;
@@ -26,26 +26,26 @@ const FeedContainer = ({
   userId,
   filter,
   searchQuery,
-  className = '',
-  showWelcome = false
+  className = "",
+  showWelcome = false,
 }: FeedContainerProps) => {
   const { user } = useAuth();
   const { success, error: showError } = useToast();
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
-  const { 
-    posts, 
-    loading, 
-    error, 
-    hasMore, 
-    loadMore, 
+  const {
+    posts,
+    loading,
+    error,
+    hasMore,
+    loadMore,
     refreshPosts,
     likePost,
     unlikePost,
     savePost,
     unsavePost,
     addComment,
-    sharePost
+    sharePost,
   } = usePosts({
     type,
     authorId,
@@ -53,7 +53,7 @@ const FeedContainer = ({
     filter,
     searchQuery,
     limit: 10,
-    autoLoad: true
+    autoLoad: true,
   });
 
   // Scroll infinito usando Intersection Observer
@@ -67,7 +67,7 @@ const FeedContainer = ({
       },
       {
         threshold: 0.1,
-        rootMargin: '100px'
+        rootMargin: "100px",
       }
     );
 
@@ -87,28 +87,31 @@ const FeedContainer = ({
     // Scroll suave para o post
     const postElement = document.getElementById(`post-${postId}`);
     if (postElement) {
-      postElement.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'center' 
+      postElement.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
       });
     }
   }, []);
 
-  const handleShare = useCallback(async (postId: string) => {
-    if (!user) {
-      showError('Você precisa estar logado para compartilhar');
-      return;
-    }
-    
-    try {
-      const shareUrl = await sharePost(postId, user.id);
-      if (shareUrl) {
-        success('Link copiado para a área de transferência!');
+  const handleShare = useCallback(
+    async (postId: string) => {
+      if (!user) {
+        showError("Você precisa estar logado para compartilhar");
+        return;
       }
-    } catch (error) {
-      showError('Erro ao compartilhar post');
-    }
-  }, [user, sharePost, success, showError]);
+
+      try {
+        const shareUrl = await sharePost(postId, user.id);
+        if (shareUrl) {
+          success("Link copiado para a área de transferência!");
+        }
+      } catch (error) {
+        showError("Erro ao compartilhar post");
+      }
+    },
+    [user, sharePost, success, showError]
+  );
 
   const handleRefresh = useCallback(() => {
     refreshPosts();
@@ -118,29 +121,29 @@ const FeedContainer = ({
     if (searchQuery) {
       return `Nenhum resultado encontrado para "${searchQuery}"`;
     }
-    
-    if (filter === 'liked') {
-      return 'Você ainda não curtiu nenhum post';
+
+    if (filter === "liked") {
+      return "Você ainda não curtiu nenhum post";
     }
-    
-    if (filter === 'saved') {
-      return 'Você ainda não salvou nenhum post';
+
+    if (filter === "saved") {
+      return "Você ainda não salvou nenhum post";
     }
-    
-    if (filter === 'authored') {
-      return 'Você ainda não criou nenhum post';
+
+    if (filter === "authored") {
+      return "Você ainda não criou nenhum post";
     }
-    
+
     if (type) {
       const typeLabels = {
-        'synopsis': 'sinopses',
-        'poster': 'cartazes',
-        'ai-image': 'imagens de IA'
+        synopsis: "sinopses",
+        poster: "cartazes",
+        "ai-image": "imagens de IA",
       };
       return `Nenhuma ${typeLabels[type]} encontrada`;
     }
-    
-    return 'Nenhum post encontrado';
+
+    return "Nenhum post encontrado";
   };
 
   return (
@@ -155,7 +158,8 @@ const FeedContainer = ({
                   Bem-vindo, {user.name}! 👋
                 </h2>
                 <p className="text-muted-foreground">
-                  Explore o feed com posts de criação cinematográfica. Curta, salve e comente!
+                  Explore o feed com posts de criação cinematográfica. Curta,
+                  salve e comente!
                 </p>
               </div>
               <Button
@@ -165,7 +169,9 @@ const FeedContainer = ({
                 disabled={loading}
                 className="flex items-center space-x-2"
               >
-                <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+                <RefreshCw
+                  className={`h-4 w-4 ${loading ? "animate-spin" : ""}`}
+                />
                 <span>Atualizar</span>
               </Button>
             </div>
@@ -179,14 +185,12 @@ const FeedContainer = ({
           title="Erro ao carregar posts"
           message={error}
           onRetry={handleRefresh}
-          onGoHome={() => window.location.href = '/Roteirum/feed'}
+          onGoHome={() => (window.location.href = "/feed")}
         />
       )}
 
       {/* Loading inicial */}
-      {loading && posts.length === 0 && (
-        <PostSkeletonList count={3} />
-      )}
+      {loading && posts.length === 0 && <PostSkeletonList count={3} />}
 
       {/* Posts */}
       {posts.map((post, index) => (
@@ -234,10 +238,9 @@ const FeedContainer = ({
                 {getEmptyStateMessage()}
               </h3>
               <p className="text-muted-foreground mb-6">
-                {searchQuery 
-                  ? 'Tente usar termos diferentes ou explore outros posts.'
-                  : 'Que tal começar explorando o feed principal?'
-                }
+                {searchQuery
+                  ? "Tente usar termos diferentes ou explore outros posts."
+                  : "Que tal começar explorando o feed principal?"}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button onClick={handleRefresh} variant="outline">
@@ -245,8 +248,8 @@ const FeedContainer = ({
                   Atualizar
                 </Button>
                 {searchQuery && (
-                  <Button 
-                    onClick={() => window.location.href = '/Roteirum/feed'}
+                  <Button
+                    onClick={() => (window.location.href = "/feed")}
                     variant="default"
                   >
                     Ver todos os posts
@@ -267,7 +270,8 @@ const FeedContainer = ({
             <div className="h-px bg-border flex-1 w-16"></div>
           </div>
           <p className="text-xs text-muted-foreground mt-2">
-            {posts.length} post{posts.length !== 1 ? 's' : ''} carregado{posts.length !== 1 ? 's' : ''}
+            {posts.length} post{posts.length !== 1 ? "s" : ""} carregado
+            {posts.length !== 1 ? "s" : ""}
           </p>
         </div>
       )}

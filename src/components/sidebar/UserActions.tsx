@@ -1,83 +1,83 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/hooks/useAuth';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { 
-  Heart, 
-  Bookmark, 
-  Send, 
-  Plus, 
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import {
+  Heart,
+  Bookmark,
+  Send,
+  Plus,
   Edit3,
   Share2,
   MoreHorizontal,
-  Zap
-} from 'lucide-react';
+  Zap,
+} from "lucide-react";
 
 interface UserActionsProps {
   className?: string;
   compact?: boolean;
 }
 
-const UserActions = ({ className = '', compact = false }: UserActionsProps) => {
+const UserActions = ({ className = "", compact = false }: UserActionsProps) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [isCreating, setIsCreating] = useState(false);
 
   const quickActions = [
     {
-      id: 'create-synopsis',
-      label: 'Nova Sinopse',
+      id: "create-synopsis",
+      label: "Nova Sinopse",
       icon: Edit3,
-      color: 'text-blue-500',
-      bgColor: 'bg-blue-500/10',
-      action: () => handleCreateContent('synopsis')
+      color: "text-blue-500",
+      bgColor: "bg-blue-500/10",
+      action: () => handleCreateContent("synopsis"),
     },
     {
-      id: 'create-poster',
-      label: 'Novo Cartaz',
+      id: "create-poster",
+      label: "Novo Cartaz",
       icon: Plus,
-      color: 'text-green-500',
-      bgColor: 'bg-green-500/10',
-      action: () => handleCreateContent('poster')
+      color: "text-green-500",
+      bgColor: "bg-green-500/10",
+      action: () => handleCreateContent("poster"),
     },
     {
-      id: 'ai-generate',
-      label: 'Gerar com IA',
+      id: "ai-generate",
+      label: "Gerar com IA",
       icon: Zap,
-      color: 'text-purple-500',
-      bgColor: 'bg-purple-500/10',
-      action: () => handleCreateContent('ai-image')
-    }
+      color: "text-purple-500",
+      bgColor: "bg-purple-500/10",
+      action: () => handleCreateContent("ai-image"),
+    },
   ];
 
   const userStats = [
-    { label: 'Posts', value: 0, path: '/Roteirum/my-posts' },
-    { label: 'Curtidas', value: 0, path: '/Roteirum/liked' },
-    { label: 'Salvos', value: 0, path: '/Roteirum/saved' }
+    { label: "Posts", value: 0, path: "/my-posts" },
+    { label: "Curtidas", value: 0, path: "/liked" },
+    { label: "Salvos", value: 0, path: "/saved" },
   ];
 
   const handleCreateContent = (type: string) => {
     setIsCreating(true);
     setTimeout(() => {
       setIsCreating(false);
-      navigate(`/Roteirum/create?type=${type}`);
+      navigate(`/create?type=${type}`);
     }, 800);
   };
 
   const handleViewProfile = () => {
-    navigate(`/Roteirum/profile/${user?.id}`);
+    navigate(`/profile/${user?.id}`);
   };
 
   const handleShareProfile = () => {
-    const profileUrl = `${window.location.origin}/Roteirum/profile/${user?.id}`;
+    const profileUrl = `${window.location.origin}/profile/${user?.id}`;
     if (navigator.clipboard) {
       navigator.clipboard.writeText(profileUrl);
       // Toast notification seria ideal aqui
-      console.log('Link do perfil copiado!');
+      console.log("Link do perfil copiado!");
     }
   };
 
@@ -95,7 +95,7 @@ const UserActions = ({ className = '', compact = false }: UserActionsProps) => {
             <div className="flex-1 min-w-0">
               <h3 className="font-medium text-sm truncate">{user?.name}</h3>
               <p className="text-xs text-muted-foreground truncate">
-                {user?.bio || 'Criador de conteúdo'}
+                {user?.bio || "Criador de conteúdo"}
               </p>
             </div>
           </div>
@@ -108,13 +108,15 @@ const UserActions = ({ className = '', compact = false }: UserActionsProps) => {
                 className="text-center p-2 rounded-lg hover:bg-muted/50 transition-colors"
               >
                 <div className="text-sm font-semibold">{stat.value}</div>
-                <div className="text-xs text-muted-foreground">{stat.label}</div>
+                <div className="text-xs text-muted-foreground">
+                  {stat.label}
+                </div>
               </button>
             ))}
           </div>
 
           <Button
-            onClick={() => handleCreateContent('poster')}
+            onClick={() => handleCreateContent("poster")}
             disabled={isCreating}
             className="w-full bg-gradient-accent hover:opacity-90"
             size="sm"
@@ -159,10 +161,10 @@ const UserActions = ({ className = '', compact = false }: UserActionsProps) => {
             <div className="flex-1 min-w-0">
               <h3 className="font-semibold text-sm truncate">{user?.name}</h3>
               <p className="text-xs text-muted-foreground truncate">
-                {user?.bio || 'Criador de conteúdo cinematográfico'}
+                {user?.bio || "Criador de conteúdo cinematográfico"}
               </p>
               <Badge variant="secondary" className="text-xs mt-1">
-                Membro desde {new Date(user?.createdAt || '').getFullYear()}
+                Membro desde {new Date(user?.createdAt || "").getFullYear()}
               </Badge>
             </div>
           </div>
@@ -174,8 +176,12 @@ const UserActions = ({ className = '', compact = false }: UserActionsProps) => {
                 onClick={() => navigate(stat.path)}
                 className="text-center p-2 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors"
               >
-                <div className="text-lg font-bold text-primary">{stat.value}</div>
-                <div className="text-xs text-muted-foreground">{stat.label}</div>
+                <div className="text-lg font-bold text-primary">
+                  {stat.value}
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  {stat.label}
+                </div>
               </button>
             ))}
           </div>
@@ -234,7 +240,7 @@ const UserActions = ({ className = '', compact = false }: UserActionsProps) => {
             <Button
               variant="link"
               size="sm"
-              onClick={() => navigate('/Roteirum/inspiration')}
+              onClick={() => navigate("/inspiration")}
               className="text-xs"
             >
               Ver Tendências
@@ -252,27 +258,27 @@ const UserActions = ({ className = '', compact = false }: UserActionsProps) => {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => navigate('/Roteirum/liked')}
+            onClick={() => navigate("/liked")}
             className="w-full justify-start"
           >
             <Heart className="h-4 w-4 mr-3 text-red-500" />
             <span className="text-sm">Posts Curtidos</span>
           </Button>
-          
+
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => navigate('/Roteirum/saved')}
+            onClick={() => navigate("/saved")}
             className="w-full justify-start"
           >
             <Bookmark className="h-4 w-4 mr-3 text-blue-500" />
             <span className="text-sm">Posts Salvos</span>
           </Button>
-          
+
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => navigate('/Roteirum/my-posts')}
+            onClick={() => navigate("/my-posts")}
             className="w-full justify-start"
           >
             <Send className="h-4 w-4 mr-3 text-green-500" />

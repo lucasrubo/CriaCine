@@ -1,7 +1,7 @@
-import { Component, ReactNode, ErrorInfo } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
+import { Component, ReactNode, ErrorInfo } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { AlertTriangle, RefreshCw, Home } from "lucide-react";
 
 interface Props {
   children: ReactNode;
@@ -24,7 +24,7 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('ErrorBoundary caught an error:', error, errorInfo);
+    console.error("ErrorBoundary caught an error:", error, errorInfo);
   }
 
   render() {
@@ -44,22 +44,23 @@ export class ErrorBoundary extends Component<Props, State> {
             </CardHeader>
             <CardContent className="text-center space-y-4">
               <p className="text-muted-foreground">
-                Ocorreu um erro inesperado. Nossa equipe foi notificada e está trabalhando para resolver o problema.
+                Ocorreu um erro inesperado. Nossa equipe foi notificada e está
+                trabalhando para resolver o problema.
               </p>
-              
-              {process.env.NODE_ENV === 'development' && this.state.error && (
+
+              {process.env.NODE_ENV === "development" && this.state.error && (
                 <details className="text-left bg-muted p-3 rounded-lg text-xs">
                   <summary className="cursor-pointer font-medium mb-2">
                     Detalhes do erro (desenvolvimento)
                   </summary>
                   <pre className="whitespace-pre-wrap break-words">
                     {this.state.error.message}
-                    {'\n\n'}
+                    {"\n\n"}
                     {this.state.error.stack}
                   </pre>
                 </details>
               )}
-              
+
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   onClick={() => window.location.reload()}
@@ -68,10 +69,10 @@ export class ErrorBoundary extends Component<Props, State> {
                   <RefreshCw className="h-4 w-4" />
                   <span>Tentar Novamente</span>
                 </Button>
-                
+
                 <Button
                   variant="outline"
-                  onClick={() => window.location.href = '/Roteirum/feed'}
+                  onClick={() => (window.location.href = "/feed")}
                   className="flex items-center space-x-2"
                 >
                   <Home className="h-4 w-4" />
@@ -98,11 +99,11 @@ interface ErrorDisplayProps {
 }
 
 export const ErrorDisplay = ({
-  title = 'Erro ao carregar',
-  message = 'Não foi possível carregar o conteúdo. Tente novamente.',
+  title = "Erro ao carregar",
+  message = "Não foi possível carregar o conteúdo. Tente novamente.",
   onRetry,
   onGoHome,
-  className = ''
+  className = "",
 }: ErrorDisplayProps) => {
   return (
     <Card className={`${className}`}>
@@ -110,12 +111,10 @@ export const ErrorDisplay = ({
         <div className="mx-auto mb-4 p-3 bg-red-100 dark:bg-red-900/20 rounded-full w-fit">
           <AlertTriangle className="h-8 w-8 text-red-500" />
         </div>
-        
+
         <h3 className="text-lg font-semibold mb-2">{title}</h3>
-        <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-          {message}
-        </p>
-        
+        <p className="text-muted-foreground mb-6 max-w-md mx-auto">{message}</p>
+
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           {onRetry && (
             <Button onClick={onRetry} className="flex items-center space-x-2">
@@ -123,7 +122,7 @@ export const ErrorDisplay = ({
               <span>Tentar Novamente</span>
             </Button>
           )}
-          
+
           {onGoHome && (
             <Button
               variant="outline"
@@ -143,11 +142,11 @@ export const ErrorDisplay = ({
 // Hook para capturar erros em componentes funcionais
 export const useErrorHandler = () => {
   const handleError = (error: Error, errorInfo?: string) => {
-    console.error('Error caught by useErrorHandler:', error, errorInfo);
-    
+    console.error("Error caught by useErrorHandler:", error, errorInfo);
+
     // Em produção, você enviaria isso para um serviço de monitoramento
     // como Sentry, LogRocket, etc.
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === "production") {
       // sendErrorToMonitoringService(error, errorInfo);
     }
   };

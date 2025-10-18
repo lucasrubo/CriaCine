@@ -1,14 +1,14 @@
-import { useNavigate } from 'react-router-dom';
-import { useRanking } from '@/hooks/useRanking';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Skeleton } from '@/components/ui/skeleton';
-import { 
-  Trophy, 
-  TrendingUp, 
-  Heart, 
+import { useNavigate } from "react-router-dom";
+import { useRanking } from "@/hooks/useRanking";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Skeleton } from "@/components/ui/skeleton";
+import {
+  Trophy,
+  TrendingUp,
+  Heart,
   Calendar,
   Crown,
   Medal,
@@ -16,10 +16,10 @@ import {
   ArrowUp,
   ArrowDown,
   Minus,
-  Sparkles
-} from 'lucide-react';
-import { Post } from '@/types';
-import { RankingEntry } from '@/data/rankingService';
+  Sparkles,
+} from "lucide-react";
+import { Post } from "@/types";
+import { RankingEntry } from "@/data/rankingService";
 
 interface TopRankingProps {
   className?: string;
@@ -27,23 +27,23 @@ interface TopRankingProps {
   showFullRanking?: boolean;
 }
 
-const TopRanking = ({ 
-  className = '', 
-  limit = 10, 
-  showFullRanking = false 
+const TopRanking = ({
+  className = "",
+  limit = 10,
+  showFullRanking = false,
 }: TopRankingProps) => {
   const navigate = useNavigate();
-  const { 
-    ranking, 
-    loading, 
-    period, 
-    totalPosts, 
-    lastUpdated, 
-    changePeriod, 
-    refreshRanking 
-  } = useRanking({ 
-    period: 'month', 
-    limit: showFullRanking ? 100 : limit 
+  const {
+    ranking,
+    loading,
+    period,
+    totalPosts,
+    lastUpdated,
+    changePeriod,
+    refreshRanking,
+  } = useRanking({
+    period: "month",
+    limit: showFullRanking ? 100 : limit,
   });
 
   const getRankIcon = (position: number) => {
@@ -66,22 +66,24 @@ const TopRanking = ({
   };
 
   const getRankBadgeColor = (position: number) => {
-    if (position <= 3) return 'bg-gradient-to-r from-yellow-400 to-yellow-600 text-white';
-    if (position <= 10) return 'bg-gradient-to-r from-blue-400 to-blue-600 text-white';
-    return 'bg-muted text-muted-foreground';
+    if (position <= 3)
+      return "bg-gradient-to-r from-yellow-400 to-yellow-600 text-white";
+    if (position <= 10)
+      return "bg-gradient-to-r from-blue-400 to-blue-600 text-white";
+    return "bg-muted text-muted-foreground";
   };
 
   const handlePostClick = (post: Post) => {
-    navigate(`/Roteirum/post/${post.id}`);
+    navigate(`/post/${post.id}`);
   };
 
   const handleViewFullRanking = () => {
-    navigate('/Roteirum/ranking');
+    navigate("/ranking");
   };
 
   const handleAuthorClick = (authorId: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    navigate(`/Roteirum/profile/${authorId}`);
+    navigate(`/profile/${authorId}`);
   };
 
   const getChangeIcon = (change: number) => {
@@ -91,16 +93,16 @@ const TopRanking = ({
   };
 
   const formatLastUpdated = (date: Date | null) => {
-    if (!date) return '';
+    if (!date) return "";
     const now = new Date();
     const diff = now.getTime() - date.getTime();
     const minutes = Math.floor(diff / (1000 * 60));
-    
-    if (minutes < 1) return 'Agora mesmo';
+
+    if (minutes < 1) return "Agora mesmo";
     if (minutes < 60) return `${minutes}min atrás`;
     const hours = Math.floor(minutes / 60);
     if (hours < 24) return `${hours}h atrás`;
-    return 'Ontem';
+    return "Ontem";
   };
 
   if (showFullRanking) {
@@ -112,7 +114,9 @@ const TopRanking = ({
             <div className="flex items-center justify-between">
               <CardTitle className="flex items-center space-x-2">
                 <Trophy className="h-5 w-5 text-yellow-500" />
-                <span>Top {limit} - {period.label}</span>
+                <span>
+                  Top {limit} - {period.label}
+                </span>
               </CardTitle>
               <Button
                 variant="outline"
@@ -126,22 +130,26 @@ const TopRanking = ({
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-2 mb-3">
-              {(['week', 'month', 'year', 'all'] as const).map((periodId) => (
+              {(["week", "month", "year", "all"] as const).map((periodId) => (
                 <Button
                   key={periodId}
-                  variant={period.id === periodId ? 'default' : 'outline'}
+                  variant={period.id === periodId ? "default" : "outline"}
                   size="sm"
                   onClick={() => changePeriod(periodId)}
                   className="text-xs"
                   disabled={loading}
                 >
-                  {periodId === 'week' ? 'Semana' : 
-                   periodId === 'month' ? 'Mês' : 
-                   periodId === 'year' ? 'Ano' : 'Todos'}
+                  {periodId === "week"
+                    ? "Semana"
+                    : periodId === "month"
+                    ? "Mês"
+                    : periodId === "year"
+                    ? "Ano"
+                    : "Todos"}
                 </Button>
               ))}
             </div>
-            
+
             <div className="flex items-center justify-between text-xs text-muted-foreground">
               <span>{totalPosts} posts no ranking</span>
               <span>Atualizado {formatLastUpdated(lastUpdated)}</span>
@@ -151,74 +159,78 @@ const TopRanking = ({
 
         {/* Lista completa */}
         <div className="space-y-2">
-          {loading ? (
-            Array.from({ length: 10 }).map((_, i) => (
-              <Card key={i}>
-                <CardContent className="p-4">
-                  <div className="flex items-center space-x-3">
-                    <Skeleton className="w-8 h-8 rounded-full" />
-                    <div className="flex-1 space-y-2">
-                      <Skeleton className="h-4 w-3/4" />
-                      <Skeleton className="h-3 w-1/2" />
+          {loading
+            ? Array.from({ length: 10 }).map((_, i) => (
+                <Card key={i}>
+                  <CardContent className="p-4">
+                    <div className="flex items-center space-x-3">
+                      <Skeleton className="w-8 h-8 rounded-full" />
+                      <div className="flex-1 space-y-2">
+                        <Skeleton className="h-4 w-3/4" />
+                        <Skeleton className="h-3 w-1/2" />
+                      </div>
+                      <Skeleton className="w-12 h-6" />
                     </div>
-                    <Skeleton className="w-12 h-6" />
-                  </div>
-                </CardContent>
-              </Card>
-            ))
-          ) : (
-            ranking.map((entry) => (
-              <Card
-                key={entry.post.id}
-                className="cursor-pointer hover:bg-muted/30 transition-colors"
-                onClick={() => handlePostClick(entry.post)}
-              >
-                <CardContent className="p-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="flex items-center space-x-2">
-                      {getRankIcon(entry.position)}
-                      <Badge className={`text-xs ${getRankBadgeColor(entry.position)}`}>
-                        #{entry.position}
-                      </Badge>
-                      {entry.isNew && (
-                        <Badge variant="secondary" className="text-xs">
-                          <Sparkles className="h-2 w-2 mr-1" />
-                          Novo
-                        </Badge>
-                      )}
-                    </div>
-                    
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-sm truncate mb-1">
-                        {entry.post.title}
-                      </h4>
-                      <div className="flex items-center space-x-2 text-xs text-muted-foreground">
-                        <button
-                          onClick={(e) => handleAuthorClick(entry.post.authorId, e)}
-                          className="hover:text-primary transition-colors"
+                  </CardContent>
+                </Card>
+              ))
+            : ranking.map((entry) => (
+                <Card
+                  key={entry.post.id}
+                  className="cursor-pointer hover:bg-muted/30 transition-colors"
+                  onClick={() => handlePostClick(entry.post)}
+                >
+                  <CardContent className="p-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="flex items-center space-x-2">
+                        {getRankIcon(entry.position)}
+                        <Badge
+                          className={`text-xs ${getRankBadgeColor(
+                            entry.position
+                          )}`}
                         >
-                          {entry.post.author.name}
-                        </button>
-                        <span>•</span>
-                        <div className="flex items-center space-x-1">
-                          <Heart className="h-3 w-3" />
-                          <span>{entry.post.likes}</span>
-                        </div>
-                        <span>•</span>
-                        <div className="flex items-center space-x-1">
-                          <span>Score: {entry.score}</span>
+                          #{entry.position}
+                        </Badge>
+                        {entry.isNew && (
+                          <Badge variant="secondary" className="text-xs">
+                            <Sparkles className="h-2 w-2 mr-1" />
+                            Novo
+                          </Badge>
+                        )}
+                      </div>
+
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-medium text-sm truncate mb-1">
+                          {entry.post.title}
+                        </h4>
+                        <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+                          <button
+                            onClick={(e) =>
+                              handleAuthorClick(entry.post.authorId, e)
+                            }
+                            className="hover:text-primary transition-colors"
+                          >
+                            {entry.post.author.name}
+                          </button>
+                          <span>•</span>
+                          <div className="flex items-center space-x-1">
+                            <Heart className="h-3 w-3" />
+                            <span>{entry.post.likes}</span>
+                          </div>
+                          <span>•</span>
+                          <div className="flex items-center space-x-1">
+                            <span>Score: {entry.score}</span>
+                          </div>
                         </div>
                       </div>
+
+                      <div className="flex items-center space-x-1">
+                        {getChangeIcon(entry.change)}
+                      </div>
                     </div>
-                    
-                    <div className="flex items-center space-x-1">
-                      {getChangeIcon(entry.change)}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))
-          )}
+                  </CardContent>
+                </Card>
+              ))}
         </div>
       </div>
     );
@@ -266,7 +278,7 @@ const TopRanking = ({
                     </Badge>
                   )}
                 </div>
-                
+
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium truncate group-hover:text-primary transition-colors">
                     {entry.post.title}
@@ -280,7 +292,7 @@ const TopRanking = ({
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center space-x-1">
                   {getChangeIcon(entry.change)}
                 </div>

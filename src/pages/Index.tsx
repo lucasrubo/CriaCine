@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/hooks/useAuth';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 import LandingPage from "@/pages/LandingPage";
 
 const Index = () => {
@@ -10,7 +10,7 @@ const Index = () => {
   useEffect(() => {
     // Se usuário está logado, redireciona para o feed
     if (isAuthenticated && !isLoading) {
-      navigate('/Roteirum/feed', { replace: true });
+      navigate("/feed", { replace: true });
     }
   }, [isAuthenticated, isLoading, navigate]);
 

@@ -1,11 +1,11 @@
-import { useAuth } from '@/hooks/useAuth';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import FeedContainer from '@/components/feed/FeedContainer';
-import AppLayout from '@/components/layout/AppLayout';
-import Sidebar from '@/components/sidebar/Sidebar';
-import { Heart, Filter } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useAuth } from "@/hooks/useAuth";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import FeedContainer from "@/components/feed/FeedContainer";
+import AppLayout from "@/components/layout/AppLayout";
+import Sidebar from "@/components/sidebar/Sidebar";
+import { Heart, Filter } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Liked = () => {
   const { user } = useAuth();
@@ -17,7 +17,7 @@ const Liked = () => {
       icon={<Heart className="h-5 w-5 text-red-500" />}
       showSearch={true}
       showBackButton={true}
-      backPath="/Roteirum/feed"
+      backPath="/feed"
       sidebarContent={<Sidebar showTopRanking={false} />}
     >
       <div className="space-y-6">
@@ -31,7 +31,9 @@ const Liked = () => {
                     <Heart className="h-5 w-5 text-red-500" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-semibold">Posts que Você Curtiu</h2>
+                    <h2 className="text-xl font-semibold">
+                      Posts que Você Curtiu
+                    </h2>
                     <p className="text-muted-foreground text-sm">
                       Todos os posts que receberam sua curtida
                     </p>
@@ -55,11 +57,7 @@ const Liked = () => {
         </Card>
 
         {/* Feed de posts curtidos */}
-        <FeedContainer
-          userId={user?.id}
-          filter="liked"
-          className="space-y-4"
-        />
+        <FeedContainer userId={user?.id} filter="liked" className="space-y-4" />
       </div>
     </AppLayout>
   );

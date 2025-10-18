@@ -88,15 +88,14 @@ const HeroSection = () => {
             </div>
           </div>
 
-          
           <Button
-                type="button"
-                size="lg"
-                variant="outline"
-                className="text-foreground h-12 px-8 border-primary/30 hover:bg-primary/10 mt-16"
-                onClick={() => window.location.href = '/Roteirum/login'}
-              >
-                Preview
+            type="button"
+            size="lg"
+            variant="outline"
+            className="text-foreground h-12 px-8 border-primary/30 hover:bg-primary/10 mt-16"
+            onClick={() => (window.location.href = "Roteirum/login")}
+          >
+            Preview
           </Button>
         </div>
       </div>

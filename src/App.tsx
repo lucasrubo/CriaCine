@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ToastProvider } from "@/components/ui/toast-provider";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import AuthGuard from "@/components/auth/AuthGuard";
 import Index from "./pages/Index";
@@ -39,33 +39,14 @@ const App = () => (
             <div className="dark">
               <Toaster />
               <Sonner />
-              <HashRouter>
+              <BrowserRouter basename="/Roteirum">
                 <Routes>
                   {/* Landing page pública */}
-                  <Route path="/Roteirum" element={<Index />} />
+                  <Route path="/" element={<Index />} />
 
                   {/* Rota raiz redireciona para feed se logado, senão para landing */}
                   <Route
-                    path="/"
-                    element={<Navigate to="/Roteirum/feed" replace />}
-                  />
-
-                  {/* Login - só acessível se não estiver logado */}
-                  <Route
-                    path="/Roteirum/login"
-                    element={
-                      <AuthGuard
-                        requireAuth={false}
-                        redirectTo="/Roteirum/feed"
-                      >
-                        <Login />
-                      </AuthGuard>
-                    }
-                  />
-
-                  {/* Feed - requer autenticação */}
-                  <Route
-                    path="/Roteirum/feed"
+                    path="/feed"
                     element={
                       <AuthGuard requireAuth={true}>
                         <Feed />
@@ -73,9 +54,19 @@ const App = () => (
                     }
                   />
 
+                  {/* Login - só acessível se não estiver logado */}
+                  <Route
+                    path="/login"
+                    element={
+                      <AuthGuard requireAuth={false} redirectTo="/feed">
+                        <Login />
+                      </AuthGuard>
+                    }
+                  />
+
                   {/* Pesquisa - requer autenticação */}
                   <Route
-                    path="/Roteirum/search"
+                    path="/search"
                     element={
                       <AuthGuard requireAuth={true}>
                         <Search />
@@ -85,7 +76,7 @@ const App = () => (
 
                   {/* Posts curtidos - requer autenticação */}
                   <Route
-                    path="/Roteirum/liked"
+                    path="/liked"
                     element={
                       <AuthGuard requireAuth={true}>
                         <Liked />
@@ -95,7 +86,7 @@ const App = () => (
 
                   {/* Posts salvos - requer autenticação */}
                   <Route
-                    path="/Roteirum/saved"
+                    path="/saved"
                     element={
                       <AuthGuard requireAuth={true}>
                         <Saved />
@@ -105,7 +96,7 @@ const App = () => (
 
                   {/* Posts do usuário - requer autenticação */}
                   <Route
-                    path="/Roteirum/my-posts"
+                    path="/my-posts"
                     element={
                       <AuthGuard requireAuth={true}>
                         <MyPosts />
@@ -115,7 +106,7 @@ const App = () => (
 
                   {/* Ranking - requer autenticação */}
                   <Route
-                    path="/Roteirum/ranking"
+                    path="/ranking"
                     element={
                       <AuthGuard requireAuth={true}>
                         <Ranking />
@@ -126,7 +117,7 @@ const App = () => (
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
-              </HashRouter>
+              </BrowserRouter>
             </div>
           </AuthProvider>
         </ToastProvider>

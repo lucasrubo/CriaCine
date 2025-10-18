@@ -43,21 +43,21 @@ const MobileNav = ({ className = "" }: MobileNavProps) => {
       id: "feed",
       label: "Feed Principal",
       icon: Home,
-      path: "/Roteirum/feed",
+      path: "/feed",
       description: "Página inicial",
     },
     {
       id: "search",
       label: "Pesquisar",
       icon: Search,
-      path: "/Roteirum/search",
+      path: "/search",
       description: "Buscar posts e usuários",
     },
     {
       id: "liked",
       label: "Curtidos",
       icon: Heart,
-      path: "/Roteirum/liked",
+      path: "/liked",
       description: "Posts que você curtiu",
       count: 0,
     },
@@ -65,7 +65,7 @@ const MobileNav = ({ className = "" }: MobileNavProps) => {
       id: "saved",
       label: "Salvos",
       icon: Bookmark,
-      path: "/Roteirum/saved",
+      path: "/saved",
       description: "Sua biblioteca pessoal",
       count: 0,
     },
@@ -73,7 +73,7 @@ const MobileNav = ({ className = "" }: MobileNavProps) => {
       id: "my-posts",
       label: "Meus Posts",
       icon: Send,
-      path: "/Roteirum/my-posts",
+      path: "/my-posts",
       description: "Posts que você criou",
       count: 0,
     },
@@ -81,7 +81,7 @@ const MobileNav = ({ className = "" }: MobileNavProps) => {
       id: "ranking",
       label: "Top Ranking",
       icon: Trophy,
-      path: "/Roteirum/ranking",
+      path: "/ranking",
       description: "Posts mais populares",
     },
   ];
@@ -91,20 +91,20 @@ const MobileNav = ({ className = "" }: MobileNavProps) => {
       id: "create",
       label: "Criar Post",
       icon: Plus,
-      path: "/Roteirum/create",
+      path: "/create",
       primary: true,
     },
     {
       id: "profile",
       label: "Meu Perfil",
       icon: User,
-      path: `/Roteirum/profile/${user?.id}`,
+      path: `/profile/${user?.id}`,
     },
     {
       id: "settings",
       label: "Configurações",
       icon: Settings,
-      path: "/Roteirum/settings",
+      path: "/settings",
     },
   ];
 
@@ -232,7 +232,9 @@ const MobileNav = ({ className = "" }: MobileNavProps) => {
                       />
                       <div className="flex-1 text-left">
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-foreground">{item.label}</span>
+                          <span className="text-sm text-foreground">
+                            {item.label}
+                          </span>
                           {item.count !== undefined && item.count > 0 && (
                             <Badge variant="secondary" className="text-xs ml-2">
                               {item.count}
@@ -268,13 +270,17 @@ const MobileNav = ({ className = "" }: MobileNavProps) => {
 
                 <div className="grid grid-cols-2 gap-2">
                   <div className="text-center p-2 bg-muted/20 rounded">
-                    <div className="text-sm font-semibold text-foreground">847</div>
+                    <div className="text-sm font-semibold text-foreground">
+                      847
+                    </div>
                     <div className="text-xs text-muted-foreground">
                       Posts Hoje
                     </div>
                   </div>
                   <div className="text-center p-2 bg-muted/20 rounded">
-                    <div className="text-sm font-semibold text-foreground">2.1k</div>
+                    <div className="text-sm font-semibold text-foreground">
+                      2.1k
+                    </div>
                     <div className="text-xs text-muted-foreground">
                       Curtidas
                     </div>

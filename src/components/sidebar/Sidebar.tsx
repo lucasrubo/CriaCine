@@ -1,29 +1,29 @@
-import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '@/hooks/useAuth';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { 
-  Heart, 
-  Bookmark, 
-  Send, 
-  Plus, 
+import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import {
+  Heart,
+  Bookmark,
+  Send,
+  Plus,
   Trophy,
   TrendingUp,
   Users,
   Settings,
   ChevronRight,
-  Sparkles
-} from 'lucide-react';
+  Sparkles,
+} from "lucide-react";
 
 interface SidebarProps {
   className?: string;
   showTopRanking?: boolean;
 }
 
-const Sidebar = ({ className = '', showTopRanking = true }: SidebarProps) => {
+const Sidebar = ({ className = "", showTopRanking = true }: SidebarProps) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -31,29 +31,29 @@ const Sidebar = ({ className = '', showTopRanking = true }: SidebarProps) => {
 
   const navigationItems = [
     {
-      id: 'liked',
-      label: 'Curtidos',
+      id: "liked",
+      label: "Curtidos",
       icon: Heart,
-      path: '/Roteirum/liked',
-      description: 'Posts que você curtiu',
-      count: 0 // Será atualizado dinamicamente
+      path: "/liked",
+      description: "Posts que você curtiu",
+      count: 0, // Será atualizado dinamicamente
     },
     {
-      id: 'saved',
-      label: 'Salvos',
+      id: "saved",
+      label: "Salvos",
       icon: Bookmark,
-      path: '/Roteirum/saved',
-      description: 'Posts salvos para depois',
-      count: 0
+      path: "/saved",
+      description: "Posts salvos para depois",
+      count: 0,
     },
     {
-      id: 'posts',
-      label: 'Seus Envios',
+      id: "posts",
+      label: "Seus Envios",
       icon: Send,
-      path: '/Roteirum/my-posts',
-      description: 'Posts que você criou',
-      count: 0
-    }
+      path: "/my-posts",
+      description: "Posts que você criou",
+      count: 0,
+    },
   ];
 
   const handleNavigation = (path: string) => {
@@ -66,7 +66,7 @@ const Sidebar = ({ className = '', showTopRanking = true }: SidebarProps) => {
     setTimeout(() => {
       setIsCreating(false);
       // Por enquanto, apenas mostra um placeholder
-      navigate('/Roteirum/create');
+      navigate("/create");
     }, 1000);
   };
 
@@ -88,16 +88,20 @@ const Sidebar = ({ className = '', showTopRanking = true }: SidebarProps) => {
           {navigationItems.map((item) => {
             const Icon = item.icon;
             const isActive = isActivePath(item.path);
-            
+
             return (
               <Button
                 key={item.id}
-                variant={isActive ? 'secondary' : 'ghost'}
+                variant={isActive ? "secondary" : "ghost"}
                 size="sm"
                 onClick={() => handleNavigation(item.path)}
                 className="w-full justify-start group hover:bg-muted/50 transition-colors"
               >
-                <Icon className={`h-4 w-4 mr-3 ${isActive ? 'text-primary' : 'text-muted-foreground'}`} />
+                <Icon
+                  className={`h-4 w-4 mr-3 ${
+                    isActive ? "text-primary" : "text-muted-foreground"
+                  }`}
+                />
                 <div className="flex-1 text-left">
                   <div className="flex items-center justify-between">
                     <span className="text-sm">{item.label}</span>
@@ -112,9 +116,9 @@ const Sidebar = ({ className = '', showTopRanking = true }: SidebarProps) => {
               </Button>
             );
           })}
-          
+
           <Separator className="my-3" />
-          
+
           {/* Botão Criar Cartaz */}
           <Button
             onClick={handleCreatePost}
@@ -156,7 +160,7 @@ const Sidebar = ({ className = '', showTopRanking = true }: SidebarProps) => {
                 <div className="text-xs text-muted-foreground">Curtidas</div>
               </div>
             </div>
-            
+
             <div className="text-center p-2 bg-muted/30 rounded-lg">
               <div className="text-lg font-bold text-primary">0</div>
               <div className="text-xs text-muted-foreground">Seguidores</div>
@@ -185,14 +189,20 @@ const Sidebar = ({ className = '', showTopRanking = true }: SidebarProps) => {
               <div
                 key={position}
                 className="flex items-center space-x-3 p-2 rounded-lg hover:bg-muted/30 cursor-pointer transition-colors"
-                onClick={() => navigate('/Roteirum/ranking')}
+                onClick={() => navigate("/ranking")}
               >
-                <div className={`
+                <div
+                  className={`
                   w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold
-                  ${position === 1 ? 'bg-yellow-500 text-white' : 
-                    position === 2 ? 'bg-gray-400 text-white' : 
-                    'bg-orange-500 text-white'}
-                `}>
+                  ${
+                    position === 1
+                      ? "bg-yellow-500 text-white"
+                      : position === 2
+                      ? "bg-gray-400 text-white"
+                      : "bg-orange-500 text-white"
+                  }
+                `}
+                >
                   {position}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -200,16 +210,16 @@ const Sidebar = ({ className = '', showTopRanking = true }: SidebarProps) => {
                     Post de Exemplo #{position}
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    {150 - (position * 20)} curtidas
+                    {150 - position * 20} curtidas
                   </p>
                 </div>
               </div>
             ))}
-            
+
             <Button
               variant="outline"
               size="sm"
-              onClick={() => navigate('/Roteirum/ranking')}
+              onClick={() => navigate("/ranking")}
               className="w-full mt-3"
             >
               Ver Top 100 Completo
@@ -229,9 +239,11 @@ const Sidebar = ({ className = '', showTopRanking = true }: SidebarProps) => {
         <CardContent className="space-y-2">
           <div className="text-center p-3 bg-muted/30 rounded-lg">
             <div className="text-2xl font-bold text-primary mb-1">1.2k</div>
-            <div className="text-xs text-muted-foreground">Criadores Ativos</div>
+            <div className="text-xs text-muted-foreground">
+              Criadores Ativos
+            </div>
           </div>
-          
+
           <div className="grid grid-cols-2 gap-2 text-center">
             <div className="p-2 bg-muted/20 rounded">
               <div className="text-sm font-semibold">847</div>
@@ -251,7 +263,7 @@ const Sidebar = ({ className = '', showTopRanking = true }: SidebarProps) => {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => navigate('/Roteirum/settings')}
+            onClick={() => navigate("/settings")}
             className="w-full justify-start text-muted-foreground hover:text-foreground"
           >
             <Settings className="h-4 w-4 mr-3" />

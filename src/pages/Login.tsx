@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import LoginForm from '@/components/auth/LoginForm';
-import { useAuth } from '@/hooks/useAuth';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import LoginForm from "@/components/auth/LoginForm";
+import { useAuth } from "@/hooks/useAuth";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,12 +10,12 @@ const Login = () => {
   useEffect(() => {
     // Se já está autenticado, redireciona para o feed
     if (isAuthenticated && !isLoading) {
-      navigate('/Roteirum/feed', { replace: true });
+      navigate("/feed", { replace: true });
     }
   }, [isAuthenticated, isLoading, navigate]);
 
   const handleLoginSuccess = () => {
-    navigate('/Roteirum/feed', { replace: true });
+    navigate("/feed", { replace: true });
   };
 
   // Mostra loading enquanto verifica autenticação

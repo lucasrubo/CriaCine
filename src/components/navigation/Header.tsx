@@ -22,7 +22,7 @@ const Header = ({
   icon = <Home className="h-6 w-6 text-primary" />,
   showSearch = true,
   showBackButton = false,
-  backPath = "/Roteirum/feed",
+  backPath = "/feed",
   className = "",
 }: HeaderProps) => {
   const { user, logout } = useAuth();
@@ -37,11 +37,11 @@ const Header = ({
   };
 
   const handleCreatePost = () => {
-    navigate("/Roteirum/create");
+    navigate("/create");
   };
 
   const handleNotifications = () => {
-    navigate("/Roteirum/notifications");
+    navigate("/notifications");
   };
 
   return (

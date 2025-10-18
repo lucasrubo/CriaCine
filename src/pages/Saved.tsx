@@ -17,7 +17,7 @@ const Saved = () => {
       icon={<Bookmark className="h-5 w-5 text-blue-500" />}
       showSearch={true}
       showBackButton={true}
-      backPath="/Roteirum/feed"
+      backPath="/feed"
       sidebarContent={<Sidebar showTopRanking={false} />}
     >
       <div className="space-y-6">

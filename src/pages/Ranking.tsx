@@ -1,9 +1,9 @@
-import { useAuth } from '@/hooks/useAuth';
-import AppLayout from '@/components/layout/AppLayout';
-import Sidebar from '@/components/sidebar/Sidebar';
-import TopRanking from '@/components/sidebar/TopRanking';
-import { Trophy } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from "@/hooks/useAuth";
+import AppLayout from "@/components/layout/AppLayout";
+import Sidebar from "@/components/sidebar/Sidebar";
+import TopRanking from "@/components/sidebar/TopRanking";
+import { Trophy } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Ranking = () => {
   const { user } = useAuth();
@@ -16,14 +16,10 @@ const Ranking = () => {
       icon={<Trophy className="h-6 w-6 text-yellow-500" />}
       showSearch={true}
       showBackButton={true}
-      backPath="/Roteirum/feed"
+      backPath="/feed"
       sidebarContent={<Sidebar showTopRanking={false} />}
     >
-      <TopRanking 
-        showFullRanking={true} 
-        limit={100}
-        className="w-full"
-      />
+      <TopRanking showFullRanking={true} limit={100} className="w-full" />
     </AppLayout>
   );
 };

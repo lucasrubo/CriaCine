@@ -1,7 +1,7 @@
-import { ReactNode, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '@/hooks/useAuth';
-import { Loader2 } from 'lucide-react';
+import { ReactNode, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import { Loader2 } from "lucide-react";
 
 interface AuthGuardProps {
   children: ReactNode;
@@ -9,10 +9,10 @@ interface AuthGuardProps {
   redirectTo?: string;
 }
 
-const AuthGuard = ({ 
-  children, 
-  requireAuth = true, 
-  redirectTo 
+const AuthGuard = ({
+  children,
+  requireAuth = true,
+  redirectTo,
 }: AuthGuardProps) => {
   const { isAuthenticated, isLoading } = useAuth();
   const navigate = useNavigate();
@@ -23,15 +23,22 @@ const AuthGuard = ({
 
     if (requireAuth && !isAuthenticated) {
       // Usuário não autenticado tentando acessar rota protegida
-      navigate('/Roteirum/login', { 
+      navigate("/login", {
         replace: true,
-        state: { from: location.pathname } // Salva a rota original
+        state: { from: location.pathname }, // Salva a rota original
       });
     } else if (!requireAuth && isAuthenticated && redirectTo) {
       // Usuário autenticado tentando acessar rota pública (ex: login)
       navigate(redirectTo, { replace: true });
     }
-  }, [isAuthenticated, isLoading, requireAuth, navigate, location.pathname, redirectTo]);
+  }, [
+    isAuthenticated,
+    isLoading,
+    requireAuth,
+    navigate,
+    location.pathname,
+    redirectTo,
+  ]);
 
   // Mostra loading enquanto verifica autenticação
   if (isLoading) {
